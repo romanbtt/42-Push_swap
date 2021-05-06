@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array_string.c                             :+:      :+:    :+:   */
+/*   check_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 15:51:55 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/05 11:09:32 by romanbtt         ###   ########.fr       */
+/*   Created: 2021/05/05 19:33:10 by romanbtt          #+#    #+#             */
+/*   Updated: 2021/05/06 11:18:21 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "checker.h"
 
-void	ft_free_array_string(char **arr)
+bool	check_sort(t_list *a)
 {
-	int		len;
-	int		i;
-
-	len = 0;
-	while (arr[len])
-		len++;
-	i = 0;
-	while (i < len)
-		ft_free(arr[i++]);
-	ft_free(arr);
+	while (a->next)
+	{
+		if (a->content > a->next->content)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }

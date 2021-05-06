@@ -6,7 +6,7 @@
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 16:17:38 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/03 23:12:21 by romanbtt         ###   ########.fr       */
+/*   Updated: 2021/05/05 10:37:28 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}				t_list;
+//typedef struct s_list
+//{
+//	void			*content;
+//	struct s_list	*next;
+//}				t_list;
 
 int				ft_intlen(int nb, int base);
 int				ft_uintlen(unsigned int nb, int base);
@@ -60,16 +60,16 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
-t_list			*ft_lstnew(void *content);
-void			ft_lstadd_front(t_list **alst, t_list *new);
-int				ft_lstsize(t_list *lst);
-t_list			*ft_lstlast(t_list *lst);
-void			ft_lstadd_back(t_list **alst, t_list *new);
-void			ft_lstdelone(t_list *lst, void (*del)(void*));
-void			ft_lstclear(t_list **lst, void (*del)(void*));
-void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
-					void (*del)(void *));
+//t_list			*ft_lstnew(void *content);
+//void			ft_lstadd_front(t_list **alst, t_list *new);
+//int				ft_lstsize(t_list *lst);
+//t_list			*ft_lstlast(t_list *lst);
+//void			ft_lstadd_back(t_list **alst, t_list *new);
+//void			ft_lstdelone(t_list *lst, void (*del)(void*));
+//void			ft_lstclear(t_list **lst, void (*del)(void*));
+//void			ft_lstiter(t_list *lst, void (*f)(void *));
+//			*ft_lstmap(t_list *lst, void *(*f)(void *),
+					//void (*del)(void *));
 void			*ft_realloc(void *ptr, size_t size);
 char			**ft_split_isspace(char const *s);
 int				ft_isspace(const char c);

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array_string.c                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/03 15:51:55 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/05 11:09:32 by romanbtt         ###   ########.fr       */
+/*   Created: 2021/05/05 13:43:48 by romanbtt          #+#    #+#             */
+/*   Updated: 2021/05/06 11:23:59 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "checker.h"
 
-void	ft_free_array_string(char **arr)
+void	push(t_list **from, t_list **to)
 {
-	int		len;
-	int		i;
+	t_list	*tmp;
 
-	len = 0;
-	while (arr[len])
-		len++;
-	i = 0;
-	while (i < len)
-		ft_free(arr[i++]);
-	ft_free(arr);
+	if (!(*from))
+		return ;
+	else
+	{
+		tmp = *from;
+		*from = (*from)->next;
+		tmp->next = *to;
+		*to = tmp;
+	}
 }

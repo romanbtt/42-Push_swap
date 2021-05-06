@@ -6,7 +6,7 @@
 #    By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/24 15:19:33 by romanbtt          #+#    #+#              #
-#    Updated: 2021/05/03 23:00:52 by romanbtt         ###   ########.fr        #
+#    Updated: 2021/05/05 10:35:37 by romanbtt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,15 +50,6 @@ SRC_FILES =	ft_memset.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
-			ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c \
 			ft_uintlen.c \
 			ft_intlen.c \
 			ft_strdel.c \

@@ -1,14 +1,23 @@
 NAME =		../../checker
 
 CC =		clang
-CFLAGS =	-Wall -Wextra -Werror -g
+CFLAGS =	-Wall -Wextra -Werror -g -w
 
 INCLUDES =	-I ./includes -I ../../libft/includes
 LIBFT = -L ../../libft -lft
 
 SRC_FILES  =	checker.c \
+				get_arguments.c \
+				check_arguments.c \
 				quicksort.c \
 				get_next_line.c \
+				list_utils.c \
+				swap.c \
+				push.c \
+				rotate.c \
+				reverse_rotate.c \
+				check_sort.c \
+				error.c \
 				debug.c
 
 SRCS = $(addprefix srcs/,$(SRC_FILES))

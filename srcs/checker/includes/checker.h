@@ -6,7 +6,7 @@
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 20:34:54 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/04 13:09:10 by romanbtt         ###   ########.fr       */
+/*   Updated: 2021/05/06 15:26:00 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,35 @@
 # include <stdbool.h>
 # include "libft.h"
 # include "get_next_line.h"
-# include <stdio.h> //to delete
 
-void quicksort(long arr[], int low, int high);
+typedef struct s_list
+{
+	int				content;
+	struct s_list	*next;
+}				t_list;
 
+bool	create_node(t_list **list, int nb);
+t_list	*last_node(t_list *node);
+int		size_list(t_list *list);
 
+void	quicksort(long arr[], int low, int high);
 
-//DEBUG
-void debug_print_array(long arr[], int len);
+bool	check_arguments(char *seq[]);
+
+char	**get_arguments(int argc, char *argv[]);
+bool	check_sort(t_list *a);
+
+void	free_checker();
+
+void	swap(t_list *lst);
+void	swap_both(t_list *a, t_list *b);
+
+void	push(t_list **from, t_list **to);
+
+void	rotate(t_list **lst);
+void	rotate_both(t_list **a, t_list **b);
+
+void	reverse_rotate(t_list **lst);
+void	reverse_rotate_both(t_list **a, t_list **b);
 
 #endif

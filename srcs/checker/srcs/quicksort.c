@@ -6,27 +6,26 @@
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:16:36 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/03 23:06:55 by romanbtt         ###   ########.fr       */
+/*   Updated: 2021/05/06 12:12:04 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	swap(long *a, long *b)
+void	swap_long(long *a, long *b)
 {
-	long tmp;
-	
+	long	tmp;
+
 	tmp = *a;
 	*a = *b;
 	*b = tmp;
 }
 
-
-int partition (long arr[], int low, int high)
+int	partition(long arr[], int low, int high)
 {
-	int pivot;
-	int i;
-	int j;
+	int	pivot;
+	int	i;
+	int	j;
 
 	pivot = arr[high];
 	i = low - 1;
@@ -34,16 +33,16 @@ int partition (long arr[], int low, int high)
 	while (j <= high - 1)
 	{
 		if (arr[j] <= pivot)
-			swap(&arr[++i], &arr[j]);
+			swap_long(&arr[++i], &arr[j]);
 		j++;
 	}
-	swap(&arr[i + 1], &arr[high]);
+	swap_long(&arr[i + 1], &arr[high]);
 	return (i + 1);
 }
 
-void quicksort(long arr[], int low, int high)
+void	quicksort(long arr[], int low, int high)
 {
-	int pivot;
+	int	pivot;
 
 	if (low < high)
 	{
@@ -52,4 +51,3 @@ void quicksort(long arr[], int low, int high)
 		quicksort(arr, pivot + 1, high);
 	}
 }
-

@@ -6,171 +6,101 @@
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 20:35:35 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/04 13:42:34 by romanbtt         ###   ########.fr       */
+/*   Updated: 2021/05/06 12:34:23 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	exit_faillure(char *error)
+static bool	fill_stack_a(t_list **a, char *args[])
 {
-	ft_putstr_fd(error, 2);
-	exit(1);
-}
-
-void	execute_actions(char *action)
-{
-	int len;
-
-	len = ft_strlen(action) + 1;
-	if (action[0] == 's')
-		ft_putstr_fd("swap\n", 1);
-	else if (action[0] == 'p')
-		ft_putstr_fd("push\n", 1);
-	else if (action[0] == 'r' && action[2])
-		ft_putstr_fd("reverse rotate\n", 1);
-	else
-		ft_putstr_fd("rotate\n", 1);
-
-}
-
-void	check_input(char *action)
-{
-	int len;
-
-	len = ft_strlen(action) + 1;
-	if (!ft_strncmp(action, "sa", len) || !ft_strncmp(action, "sb", len)
-		|| !ft_strncmp(action, "ss", len) || !ft_strncmp(action, "pa", len)
-		|| !ft_strncmp(action, "pb", len) || !ft_strncmp(action, "ra", len)
-		|| !ft_strncmp(action, "rb", len) || !ft_strncmp(action, "rr", len)
-		|| !ft_strncmp(action, "rra", len) || !ft_strncmp(action, "rrb", len)
-		|| !ft_strncmp(action, "rrr", len))
-		return ;
-	else
-		exit_faillure("Error\n");
-}
-	
-
-void	get_inputs()
-{
-	char *action;
-
-	action = NULL;
-	while (get_next_line(STDIN_FILENO, &action) > 0)
-	{
-		check_input(action);
-		execute_actions(action);
-		free(action);
-	}
-	free(action);
-}
-
-void check_sorting()
-{
-	get_inputs();
-	check_sorting();
-}
-
-
-
-void	check_duplicate(long arr[], int len)
-{
-	int i;
-
-	i = 0;
-	while (i < len - 1)
-	{
-		if (arr[i] == arr[i + 1])
-			exit_faillure("Error\n");
-		i++;
-	}
-}
-
-int	count_check_digit(char *args[])
-{
-	int i;
-	int j;
+	int	i;
 
 	i = 0;
 	while (args[i])
 	{
-		j = 0;
-		while (args[i][j])
+		if (!create_node(a, ft_atoi(args[i++])))
 		{
-			if (args[i][0] == '-')
-				j++;
-			if (!ft_isdigit(args[i][j]))
-				exit_faillure("Error\n");
-			j++;
-		}
-		i++;
+			ft_free_array_string(args);
+			return (0);
+		}	
 	}
-	return (i);
+	ft_free_array_string(args);
+	return (1);
 }
 
-void	check_arguments(char *args[])
+static bool	process_actions(char *action, t_list **a, t_list **b)
 {
-	int i;
-	int j;
-	int k;
-	long *arr;
-	
-	i = count_check_digit(args);
-	j = 0;
-	k = i;
-	arr = malloc(sizeof(long) * i);
-	if (!arr)
-		exit_faillure("Malloc : Error\n");
-	while (i--)
-	{
-		arr[j] = ft_atol(args[j]);
-		if (arr[j] > 2147483647)
-			exit_faillure("Error\n");
-		j++;
-	}
-	quicksort(arr, 0, k - 1);
-	check_duplicate(arr, k);
-	//debug_print_array(arr, k);
-}
-
-char	**get_arguments(int argc, char *argv[])
-{
-	char **args;
-	int i;
-
-	if (argc == 2)
-	{
-		args = ft_split(argv[1], ' ');
-		if (!args)
-			exit_faillure("Ft_split : Error\n");
-	}	
+	if (!ft_strncmp(action, "sa", 3))
+		swap(*a);
+	else if (!ft_strncmp(action, "sb", 3))
+		swap(*b);
+	else if (!ft_strncmp(action, "ss", 3))
+		swap_both(*a, *b);
+	else if (!ft_strncmp(action, "pa", 3))
+		push(b, a);
+	else if (!ft_strncmp(action, "pb", 3))
+		push(a, b);
+	else if (!ft_strncmp(action, "ra", 3))
+		rotate(a);
+	else if (!ft_strncmp(action, "rb", 3))
+		rotate(b);
+	else if (!ft_strncmp(action, "rr", 3))
+		rotate_both(a, b);
+	else if (!ft_strncmp(action, "rra", 4))
+		reverse_rotate(a);
+	else if (!ft_strncmp(action, "rrb", 4))
+		reverse_rotate(b);
+	else if (!ft_strncmp(action, "rrr", 4))
+		reverse_rotate_both(a, b);
 	else
+		return (0);
+	return (1);
+}
+
+static bool	get_process_inputs(t_list **a, t_list **b)
+{
+	char	*action;
+	int		ret;
+
+	action = NULL;
+	ret = 1;
+	while (ret > 0)
 	{
-		i = 0;
-		args = malloc(sizeof(char*) * (argc));
-		if (!args)
-			exit_faillure("Malloc : Error\n");
-		while (--argc)
+		ret = get_next_line(STDIN_FILENO, &action);
+		if ((!process_actions(action, a, b) || ret == -1) && ret != 0)
 		{
-			args[i] = ft_strdup(argv[i + 1]);
-			if (!args[i])
-				exit_faillure("Ft_strdup : Error\n");
-			i++;
+			free(action);
+			return (0);
 		}
-		args[i] = NULL;
+		free(action);
+		print_stacks(*a, *b);
 	}
-	return (args);
+	return (1);
 }
 
 int	main(int argc, char *argv[])
 {
-	char **args;
-	
+	char	**seq;
+	t_list	*a;
+	t_list	*b;
+
+	b = NULL;
 	if (argc != 1)
 	{
-		args = get_arguments(argc, argv);
-		check_arguments(args);
-		check_sorting();
-	}	
+		seq = get_arguments(argc, argv);
+		if (!check_arguments(seq) || !fill_stack_a(&a, seq))
+			exit_faillure("Error\n");
+		if (!get_process_inputs(&a, &b))
+		{
+			free_checker(a);
+			exit_faillure("Error\n");
+		}	
+	}
+	if (!b && a && check_sort(a))
+		ft_putstr_fd("OK\n", 1);
+	else
+		ft_putstr_fd("KO\n", 1);
+	free_checker(a);
 	return (0);
 }
