@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*   check_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 13:45:03 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/11 16:05:09 by romanbtt         ###   ########.fr       */
+/*   Created: 2021/05/05 19:33:10 by romanbtt          #+#    #+#             */
+/*   Updated: 2021/05/06 11:18:21 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "checker.h"
 
-void	reverse_rotate(t_list **lst)
+bool	check_sort(t_list *a)
 {
-	t_list	*tmp;
-	t_list	*tmp2;
-
-	if (!(*lst) || !(*lst)->next)
-		return ;
-	else
+	while (a->next)
 	{
-		tmp = *lst;
-		tmp2 = *lst;
-		while (tmp->next)
-		{
-			if (tmp->next->next)
-				tmp2 = tmp2->next;
-			tmp = tmp->next;
-		}
-		tmp2->next = NULL;
-		tmp->next = *lst;
-		*lst = tmp;
+		if (a->content > a->next->content)
+			return (0);
+		a = a->next;
 	}
-}
-
-void	reverse_rotate_both(t_list **a, t_list **b)
-{
-	reverse_rotate(a);
-	reverse_rotate(b);
+	return (1);
 }

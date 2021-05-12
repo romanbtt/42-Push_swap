@@ -6,7 +6,7 @@
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 20:34:54 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/06 15:26:00 by romanbtt         ###   ########.fr       */
+/*   Updated: 2021/05/10 14:40:37 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ bool	create_node(t_list **list, int nb);
 t_list	*last_node(t_list *node);
 int		size_list(t_list *list);
 
+void	exit_faillure(char *error);
+void 	free_checker(t_list *lst);
+
 void	quicksort(long arr[], int low, int high);
 
 bool	check_arguments(char *seq[]);
 
 char	**get_arguments(int argc, char *argv[]);
 bool	check_sort(t_list *a);
-
-void	free_checker();
 
 void	swap(t_list *lst);
 void	swap_both(t_list *a, t_list *b);

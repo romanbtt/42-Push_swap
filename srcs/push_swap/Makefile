@@ -1,12 +1,22 @@
 NAME =		../../push_swap
 
 CC =		clang
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror -w -g
 
-INCLUDES =	-I ./includes -I ../libft/includes
-LIBFT = -L ../libft -lft
+INCLUDES =	-I ./includes -I ../../libft/includes
+LIBFT = -L ../../libft -lft
 
-SRC_FILES  =	push_swap.c
+SRC_FILES  =	push_swap.c \
+				get_arguments.c \
+				check_arguments.c \
+				quicksort.c \
+				list_utils.c \
+				error.c \
+				sort_stack.c \
+				push.c \
+				rotate.c \
+				reverse_rotate.c \
+				swap.c
 
 SRCS = $(addprefix srcs/,$(SRC_FILES))
 

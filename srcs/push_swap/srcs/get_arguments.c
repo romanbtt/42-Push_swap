@@ -6,11 +6,11 @@
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:03:35 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/10 16:36:45 by romanbtt         ###   ########.fr       */
+/*   Updated: 2021/05/10 16:36:36 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "pushswap.h"
 
 static char	**one_line_arguments(char *argv[])
 {

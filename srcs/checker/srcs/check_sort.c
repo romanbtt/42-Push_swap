@@ -6,11 +6,11 @@
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 19:33:10 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/06 11:18:21 by romanbtt         ###   ########.fr       */
+/*   Updated: 2021/05/11 13:22:24 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "pushswap.h"
 
 bool	check_sort(t_list *a)
 {

@@ -6,13 +6,13 @@
 /*   By: romanbtt <marvin@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:11:23 by romanbtt          #+#    #+#             */
-/*   Updated: 2021/05/10 17:47:35 by romanbtt         ###   ########.fr       */
+/*   Updated: 2021/05/10 17:52:07 by romanbtt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "pushswap.h"
 
-static int	lenght_array(char *array[])
+int	lenght_array(char *array[])
 {
 	int	i;
 
@@ -84,3 +84,5 @@ bool	check_arguments(char *seq[])
 	free(arr);
 	return (1);
 }
+
+
